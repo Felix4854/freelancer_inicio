@@ -1,0 +1,293 @@
+:root /*Definimos un pseudo selector, root es un pseudo elemento que es una forma de almacenar variables (custom properties)*/
+{
+    --blanco: #FFFFFF;
+    --oscuro: #000000;
+    --primario:#ffc107;
+    --secundario:#0097A7;
+    --gris: #757575;
+    --grisClaro: #DFE9F3;
+
+}
+
+/*Globales*/
+html{
+    font-size: 62.5%;/*reiniciamos el tamaño*/
+    box-sizing: border-box; /*Hack para Box Model*/
+    scroll-snap-type: y mandatory; /*y vertical, x horizontal*/
+}
+
+/*Scroll snap*/
+.servicios, 
+.navegacion-principal,
+.formulario{
+    scroll-snap-align: center; /*No funciona en todos los navegadores*/
+    scroll-snap-stop: always;
+}
+
+*, *:before, *:after{
+    box-sizing: inherit;
+}/*el * es un selector universal por lo tanto a todos los elementos aplicara "box-sizing: border-box;" 
+lo que hara es que el padding que yo use no sera un problema ya que no afectara al tamaño del elemento*/
+/*las coma se utiliza para que a un selector ya a otro se aplique las mismas reglas*/
+/*after es contenido que no existe como tal, forma parte de un pseudo elemento 
+(no existen en el html pero si en el css), a veces se usa, 
+usa box-sizing para que no le afecte aplicarle un padding en caso modifique su tamaño*/
+/*before se usa después */
+
+
+body{
+    font-size: 16px;/*1rem = 10px*/
+    font-family: 'Krub', sans-serif;
+    background-image: linear-gradient(to top, var(--grisClaro) 0%, var(--blanco) 20%);
+}/*Usa estas lineas de codigo del body y html en todos los proyectos
+y cuando vayas a poner un fontsize de 60px solo ponle 6 rem y se adaptara
+a todos los dispositivos*/
+
+.contenedor{
+    max-width: 80rem;
+    margin: 0 auto; /*top right bottom  si solo hay
+    dos valores css sabe que el primero es de arriba y abajo y el 
+    segundo de la derecha e izquierda*/
+}
+
+.boton{
+    background-color: var(--secundario);
+    color: var(--blanco);
+    padding: 1rem 3rem;
+    margin-top: 3rem;
+    font-size: 2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;/*o 700*/
+    border-radius: .5rem;
+    width: 90%;
+    text-align: center;
+    border: none;
+}
+
+@media (min-width: 768px) { 
+    .boton{
+        width: auto;
+    }
+}
+
+.boton:hover{
+    cursor: pointer;
+}
+
+.sombra{
+    -webkit-box-shadow: 0px 5px 15px 0px rgba(112,112,112,0.48);
+    -moz-box-shadow: 0px 5px 15px 0px rgba(112,112,112,0.48);
+    box-shadow: 0px 5px 15px 0px rgba(112,112,112,0.48); 
+    background-color: var(--blanco);
+    padding: 2rem;
+    border-radius: 1rem;
+}
+/*Tipografia*/
+h1{
+    font-size: 3.8rem;
+}
+
+h2{
+    font-size: 2.8rem;
+}
+
+h3{
+    font-size: 1.8rem;
+}
+
+h1,h2,h3{
+    text-align: center;
+}
+
+/*Titulos*/
+.titulo span{
+    font-size: 2rem;
+}
+
+/*Utilidades*/
+.w-sm-100{
+    width: 100%;
+}
+
+@media (min-width: 768px) { 
+    .w-sm-100{
+        width: auto;
+    }
+}
+
+.flex{
+    display: flex;
+}
+
+.alinear-derecha{
+    justify-content: flex-end;
+}
+
+/*Navegacion principal*/
+.nav-bg{
+    background-color: var(--secundario);
+}
+
+.navegacion-principal{
+    display: flex;
+    flex-direction: column;
+}
+@media (min-width: 768px) { 
+    .navegacion-principal{
+        /*No es necesario definirle el display flex porque lo que hacen
+        los mq es que hereda sus propiedades*/
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+.navegacion-principal a{
+    display: block;
+    text-align: center;
+    color:var(--blanco);
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 700;
+    padding: 1rem;/*Agrega más espacio de afuera hacia adentro*/
+
+}
+.navegacion-principal a:hover{
+    background-color: var(--primario);
+    color: var(--oscuro);
+}
+
+/*Hero*/
+.hero{
+    background-image: url(../img/hero.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 450px;
+    position: relative;/*El elemento padre debe tener posicion relativa siempre para que el hijo se posicione de manera 
+    absoluta*/
+    margin-bottom: 2rem;
+}
+.contenido-hero{
+    position: absolute;
+    background-color: rgba(0, 0, 0, .7);/*Anterior*/
+    background-color: rgb(0 0 0 / 70%);
+    width: 100%;
+    height: 100%;
+    /*Codigo para alinear vertical (forma más sencilla) y horizontalmente*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenido-hero h2,
+.contenido-hero p{
+    color: var(--blanco);
+}
+
+.contenido-hero .ubicacion{
+    display: flex;
+    align-items: flex-end;
+}
+
+
+/*Servicios*/
+@media (min-width: 768px) { 
+    .servicios{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /*33.3% 0 1fr tres veces*/
+        /*grid: 20rem 80rem / 30rem 30rem;*/ /*altura filas/ tamaño de las columnas*/
+        column-gap: 1rem;
+    }
+}
+
+.servicio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.servicio h3{
+    color: var(--secundario);
+    font-weight: normal;/*o 400*/
+}
+
+.servicio p{
+    line-height: 2;
+    text-align: center;
+}
+
+.servicio .iconos{
+    height: 15rem;
+    width: 15rem;
+    background-color: var(--primario);
+    border-radius: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/*Contacto*/
+.formulario{
+    background-color: var(--gris);
+    width: min(60rem,100%);/*Utiliza el valor más pequeño*/
+    margin: 0 auto;/*Se utiliza siempre que se tenga un formulario cuyo padre no sea un display flex. El formulario tiene un display block*/
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.formulario fieldset{
+    border: none;
+}
+
+.formulario legend{
+    margin: 0 auto;/*legend no identa correctamente por ello usamos margin para identarlo, esto en firefox*/
+    text-align: center;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: var(--primario);
+}
+
+@media (min-width: 768px) { 
+    .contenedor-campos{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto auto 20rem;
+        column-gap: 1rem;
+    }
+    .campo:nth-child(3),
+    .campo:nth-child(4){/*en nth-child los arreglos empiezan en 1 y no en 0*/
+        grid-column: 1 / 3;
+    }
+}
+
+.campo{
+    margin-bottom: 1rem;
+}
+
+.campo label{
+    color: var(--blanco);
+    font-weight: bold;
+    margin-bottom: .5rem;
+    display: block;
+}
+
+/*.campo input[type="email"]{
+    background-color: red;
+}*/
+
+.campo textarea{
+    height: 20rem;
+}
+
+.input-text {
+    width: 100%;
+    border: none;
+    padding: 1.5rem;
+    border-radius: .5rem;
+}
+
+/*Footer*/
+.footer{
+    text-align: center;
+}
